@@ -14,7 +14,7 @@
    7.1 [Transfer learning](#transfer-learning)  
    7.2 [Sensitivity analysis](#sensitivity-analysis)  
    7.3 [Finetuning](#finetuning)
-   7.4 [Other supervised algorithms](#other supervised algorithms)
+   7.4 [Other supervised algorithms](#other-supervised-algorithms)
 9. [Limitations](#limitations)  
    8.1 [Randomness](#randomness)  
    8.2 [Architecture choices](#architecture-choices)  
