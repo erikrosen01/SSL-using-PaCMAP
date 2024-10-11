@@ -6,23 +6,23 @@
 3. [PaCMAP](#pacmap)
 4. [Motivation of the algorithm](#motivation-of-the-algorithm)
 5. [Method](#method)  
-   4.1 [Data split](#data-split)  
-   4.2 [Training](#training)  
-   4.3 [Classification](#classification)  
+   5.1 [Data split](#data-split)  
+   5.2 [Training](#training)  
+   5.3 [Classification](#classification)  
 6. [Experiments](#experiments)
 7. [Results](#results)
 8. [Suggested future experiments](#suggested-future-experiments)  
-  7.1 [Transfer learning](#transfer-learning)  
-  7.2 [Sensitivity analysis](#sensitivity-analysis)  
-  7.3 [Fine tuning](#finet-uning)  
-  7.4 [Other supervised algorithms](#other-supervised-algorithms)
+    8.1 [Transfer learning](#transfer-learning)  
+    8.2 [Sensitivity analysis](#sensitivity-analysis)  
+    8.3 [Fine tuning](#fine-tuning)  
+    8.4 [Other supervised algorithms](#other-supervised-algorithms)  
+    8.5 [Combining with other SSL techniques](#combining-with-other-ssl-techniques)
 9. [Limitations](#limitations)  
-   8.1 [Randomness](#randomness)  
-   8.2 [Architecture choices](#architecture-choices)  
+   9.1 [Randomness](#randomness)  
+   9.2 [Architecture choices](#architecture-choices)  
 10. [Attributions](#attributions)
 
 
-   
 
 ### Overview
 This repository explores using the unsupervised dimensionality reduction algorithm PaCMAP to make use of unlabeled data in computer vision tasks.
@@ -68,6 +68,7 @@ All models were tested using different fractions of the data labeled. The tested
 3. Labeled as unlabeled: In these experiments the labeled data was used in both the unsupervised parts (PaCMAP and training of net1 and net2) and in the supervised part.
 4. Concatenated1: In the last supervised stage all the MLPs were converted to one MLP. This was done by training net1 and net2 as previously. Then net3 is initialized, the three models are concatenated and this concatenated model is trained using the pictures as input and the labels as outputs.
 5. Concatenated2: When net2 is initialized, it is concatenated with net1 and then trained using the unlabeled data as input and PaCMAP<sub>16</sub>(net<sub>1</sub>(unlabeled data)) as the targets. When net3 is initialized it's concatenated with net1 and net2 lite in the concatenated1 experiments.
+6. All combined: This experiment combined early stopping, labeled as unlabeled and concatenated1.
 
 ### Results
 |  Test accuracy | 50% | 10% | 5% | 1% | 0.1% | 1 sample per class|
@@ -77,6 +78,7 @@ All models were tested using different fractions of the data labeled. The tested
 | Labeled as unlabeled | 0.9596 | 0.9597 | 0.9553 | 0.9463 | 0.1079* | 0.0989* |
 | Concatenated1 | 0.9752 | 0.9587 | 0.9582 | 0.9449 | 0.678 | 0.5499 |
 | Concatenated2 | 0.9735 | 0.9613 | 0.9593 | 0.9513 | 0.6117 | 0.2667 |
+| All combined | 0.9684 | 0.9619 | 0.9506 | 0.936 | 0.677 | 0.2825 | 
 
 \* Seems to be very random, sometimes these values indicate a random classification (accuracy around 0.1) and sometimes they reach significantly higher.
 
@@ -93,6 +95,9 @@ One thind I believe could benefit the models is fine tuning. Fine Tuning could b
 
 #### Other supervised algorithms
 Since PaCMAP is an algorithm whose goal is to preserve local structure and does some clustering it would be interesting to try whether other, simpler algorithms can be used in the supervised part of training and classification (instead of net3). It would be interesting to see how well KNNs or decision trees would perform.
+
+#### Combining with other SSL techniques
+It would be very interesting to combine this with other techniques such as pseudo-labeling and consistency regularization. Psuedo-labeling can, if successful, increase the labeled data-set which should increase performance. Consistency regularization encourage the network to make similar predictions for data-points which are similar to each other. This should help increase performance, especially if PaCMAP does "great" clustering in it's dimensionality reduction.
 
 ### Limitations
 
