@@ -4,29 +4,28 @@
 1. [Overview](#overview)
 2. [Data](#data)
 3. [PaCMAP](#pacmap)
-4. [Method](#method)  
+4. [Motivation of the algorithm](#motivation-of-the-algorithm)
+5. [Method](#method)  
    4.1 [Data split](#data-split)  
    4.2 [Training](#training)  
    4.3 [Classification](#classification)  
-5. [Experiments](#experiments)
-6. [Results](#results)
-7. [Suggested future experiments](#suggested-future-experiments)  
+6. [Experiments](#experiments)
+7. [Results](#results)
+8. [Suggested future experiments](#suggested-future-experiments)  
   7.1 [Transfer learning](#transfer-learning)  
   7.2 [Sensitivity analysis](#sensitivity-analysis)  
   7.3 [Finetuning](#finetuning)  
   7.4 [Other supervised algorithms](#other-supervised-algorithms)
-8. [Limitations](#limitations)  
+9. [Limitations](#limitations)  
    8.1 [Randomness](#randomness)  
    8.2 [Architecture choices](#architecture-choices)  
-9. [Attributions](#attributions)
+10. [Attributions](#attributions)
 
-
-   
 
    
 
 ### Overview
-This repository explores using the unsupervised dimensionality reduction algorithm PaCMAP to make use of unlabeled data in computer vision tasks
+This repository explores using the unsupervised dimensionality reduction algorithm PaCMAP to make use of unlabeled data in computer vision tasks.
 
 ### Data
 The data used is the MNIST data-set which is a set of 60 000 pictures of handwritten digits along with its corresponding label (a number 0-9). The pictures are 28 by 28 pixels with values ranging from 0-255 depending on the pixel intensity. The data-set is commonly used to test and benchmark computer vision techniques. In these experiments the labels are removed for some fractions of the data which means one can't use them to train the model in a supervised way.
@@ -38,6 +37,13 @@ Distant points: Preserving global structure.
 Mid-range points: Maintaining a balance between local and global representations.
 
 The algorithm is most commonly used to reduce data into 2d or 3d in order to allow for visualization. In this project it is instead used to reduce to a much higher dimensional space. The hope is that it can utilize unlabeled data to get a low dimensional approximation of the manifold which hand-written digits is on which can than allow for much more data-efficient supervised learning.
+
+### Motivation of the algorithm
+I believe this way of utilizing PaCMAP in semi-supervied learning could be beneficial because:
+1. It should be able to help find the manifold each data-class exists on in a rather compute-efficient manner.
+2. It can make use of unlabeled data in a way which should aid supervised learning in the later steps of the training.
+3. Training only a sub-network instead of training the whole network at once in each phase should make the task more memory efficient and potentially faster.
+4. Training only a few layers at a time should avoid common problems with training deep networks such as vanishing gradients.
 
 ### Method
 
