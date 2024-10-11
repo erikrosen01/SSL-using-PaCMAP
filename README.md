@@ -70,7 +70,7 @@ All models were tested using different fractions of the data labeled. The tested
 5. Concatenated2: When net2 is initialized, it is concatenated with net1 and then trained using the unlabeled data as input and PaCMAP<sub>16</sub>(net<sub>1</sub>(unlabeled data)) as the targets. When net3 is initialized it's concatenated with net1 and net2 lite in the concatenated1 experiments.
 
 ### Results
-|    | 50% | 10% | 5% | 1% | 0.1% | 1 sample per class|
+|  Test accuracy | 50% | 10% | 5% | 1% | 0.1% | 1 sample per class|
 |----|----|----|----|----|----|----|
 | Base model | 0.9526 | 0.9602 | 0.9571 | 0.9489 | 0.4107* | 0.2783* |
 | Early stopping | 0.9436 | 0.9582 | 0.9546 | 0.9573 | 0.6235 | 0.2184* |
