@@ -11,14 +11,15 @@
 5. [Experiments](#experiments)
 6. [Results](#results)
 7. [Suggested future experiments](#suggested-future-experiments)  
-   7.1 [Transfer learning](#transfer-learning)  
-   7.2 [Sensitivity analysis](#sensitivity-analysis)  
-   7.3 [Finetuning](#finetuning)
-   7.4 [Other supervised algorithms](#other-supervised-algorithms)
-9. [Limitations](#limitations)  
+  7.1 [Transfer learning](#transfer-learning)  
+  7.2 [Sensitivity analysis](#sensitivity-analysis)  
+  7.3 [Finetuning](#finetuning)  
+  7.4 [Other supervised algorithms](#other-supervised-algorithms)
+8. [Limitations](#limitations)  
    8.1 [Randomness](#randomness)  
    8.2 [Architecture choices](#architecture-choices)  
-10. [Attributions](#attributions)
+9. [Attributions](#attributions)
+
 
    
 
